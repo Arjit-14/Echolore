@@ -171,6 +171,19 @@ echolore/
 │   └── postgres/init.sql                      # PostgreSQL/PostGIS schema, indexes, triggers
 ├── app/
 │   └── load.py                                # ⚠️ Isolated early experiment (PDF+FAISS) — NOT part of pipeline
+├── src/                                       # Frontend — React + Vite (arkana-react)
+│   ├── components/                            # UI components (Navbar, cards, modals, transitions)
+│   ├── pages/                                 # Route pages (Home, Browse, Explore, Culture, etc.)
+│   ├── data/                                  # Static frontend data (artifacts.js)
+│   ├── assets/                                # Images and icons
+│   ├── App.jsx
+│   ├── App.css
+│   ├── main.jsx
+│   └── index.css
+├── public/                                    # Frontend static assets
+├── index.html                                 # Vite entry point
+├── package.json                               # Frontend dependencies (React, Vite)
+├── vite.config.js                             # Vite configuration
 ├── docker-compose.yml                         # PostgreSQL + PostGIS + Redis + ChromaDB
 ├── requirements.txt                           # All Python dependencies
 ├── .env.example                               # Environment variable template — copy to .env
@@ -200,7 +213,7 @@ echolore/
 | API backend | FastAPI + Uvicorn | Phase 3 |
 | Caching | Redis | Phase 3 |
 | Containerisation | Docker Compose | All |
-| Frontend | React + Leaflet.js | Phase 4–5 |
+| Frontend | React + Vite (arkana-react) + Leaflet.js (planned) | Phase 4–5 |
 | Code quality | Black, Ruff, MyPy | All |
 
 ---
@@ -299,6 +312,7 @@ Phase 6 — Deployment                  📌 PLANNED
 
 - Python 3.11+
 - Docker + Docker Compose (for PostgreSQL / ChromaDB)
+- Node.js 18+ (for the React frontend)
 - Git
 
 ### 1. Clone & Install
@@ -373,6 +387,18 @@ Force-refresh all sources (bypasses cached checkpoints):
 ```bash
 python -m ingestion.validate --force-refresh
 ```
+
+### 5. Run the Frontend (arkana-react)
+
+```bash
+# Install frontend dependencies
+npm install
+
+# Start the Vite dev server
+npm run dev
+```
+
+The frontend runs at `http://localhost:5173` by default.
 
 ---
 
